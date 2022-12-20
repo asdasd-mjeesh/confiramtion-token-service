@@ -1,4 +1,4 @@
-package com.confirmation_token.service;
+package com.confirmation_token.service.account;
 
 import com.confirmation_token.exception.EntityNotFoundException;
 import com.confirmation_token.persistance.entity.Account;
@@ -26,12 +26,6 @@ public class AccountDatabaseService implements AccountService {
             return account.get();
         }
         throw new EntityNotFoundException(String.format("Account with confirmation token=%s not found", token));
-    }
-
-    @Override
-    public boolean deleteById(Long id) {
-        accountRepository.deleteById(id);
-        return accountRepository.findById(id).isEmpty();
     }
 
     @Override

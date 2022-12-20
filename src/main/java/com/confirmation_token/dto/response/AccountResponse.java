@@ -1,11 +1,9 @@
-package com.confirmation_token.persistance.entity;
+package com.confirmation_token.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
@@ -13,9 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document
-public class Account {
-    @Id
+public class AccountResponse {
     private String username;
     private String email;
     private String contact;
