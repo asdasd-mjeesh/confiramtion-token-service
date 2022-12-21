@@ -1,6 +1,6 @@
 package com.confirmation_token.service.mapper;
 
-import com.confirmation_token.dto.request.AccountRequest;
+import com.confirmation_token.dto.request.AccountConfirmationRequest;
 import com.confirmation_token.persistance.entity.Account;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class AccountRequestMapper implements Mapper<Account, AccountRequest> {
+public class AccountRequestMapper implements Mapper<Account, AccountConfirmationRequest> {
 
     @Override
-    public Account map(AccountRequest from) {
+    public Account map(AccountConfirmationRequest from) {
         return Account.builder()
                 .username(from.getUsername())
                 .contact(from.getContact())
@@ -21,7 +21,7 @@ public class AccountRequestMapper implements Mapper<Account, AccountRequest> {
     }
 
     @Override
-    public List<Account> map(List<AccountRequest> from) {
+    public List<Account> map(List<AccountConfirmationRequest> from) {
         return from.stream()
                 .map(this::map)
                 .collect(Collectors.toList());

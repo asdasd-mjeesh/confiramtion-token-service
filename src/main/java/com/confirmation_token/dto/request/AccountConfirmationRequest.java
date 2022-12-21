@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountRequest {
+public class AccountConfirmationRequest {
     private String username;
     private String email;
     private String contact;
