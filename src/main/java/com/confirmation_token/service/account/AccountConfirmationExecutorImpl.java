@@ -21,10 +21,8 @@ public class AccountConfirmationExecutorImpl implements AccountConfirmationExecu
 
     @KafkaListener(topics = "account_confirmation", groupId = "account_confirmation_group_id")
     public void execute(AccountConfirmationRequest accountConfirmationRequest) {
-        System.out.println("ASDSADSADSADASD");
         Account account = accountRequestMapper.map(accountConfirmationRequest);
         this.execute(account);
-        System.out.println(account);
         log.info("Confirmation for account={} been send", account);
     }
 
