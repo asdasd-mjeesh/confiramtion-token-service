@@ -1,6 +1,6 @@
 package com.confirmation_token.service.mapper;
 
-import com.confirmation_token.dto.request.AccountConfirmationRequest;
+import com.confirmation_token.model.dto.request.incoming.AccountConfirmationRequest;
 import com.confirmation_token.persistance.entity.Account;
 import org.springframework.stereotype.Service;
 

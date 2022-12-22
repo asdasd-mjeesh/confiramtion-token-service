@@ -1,6 +1,6 @@
 package com.confirmation_token.api.rest_controller;
 
-import com.confirmation_token.dto.response.AccountResponse;
+import com.confirmation_token.model.dto.response.AccountResponse;
 import com.confirmation_token.service.mapper.AccountResponseMapper;
 import com.confirmation_token.service.account.AccountService;
 import lombok.RequiredArgsConstructor;

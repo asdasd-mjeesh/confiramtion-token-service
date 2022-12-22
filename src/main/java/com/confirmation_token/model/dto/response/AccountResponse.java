@@ -1,5 +1,6 @@
-package com.confirmation_token.dto.response;
+package com.confirmation_token.model.dto.response;
 
+import com.confirmation_token.model.ConfirmationToken;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +17,5 @@ public class AccountResponse {
     private String email;
     private String contact;
     private LocalDateTime createdAt;
-    private String confirmationToken;
+    private ConfirmationToken confirmationToken;
 }

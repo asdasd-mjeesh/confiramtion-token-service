@@ -1,6 +1,7 @@
 package com.confirmation_token.service.account;
 
-import com.confirmation_token.dto.request.AccountConfirmationRequest;
+import com.confirmation_token.model.dto.request.incoming.AccountConfirmationRequest;
+import com.confirmation_token.model.dto.request.outgoing.ConfirmationTokenRequest;
 import com.confirmation_token.persistance.entity.Account;
 import com.confirmation_token.service.confirmation_token.ConfirmationSender;
 import com.confirmation_token.service.confirmation_token.ConfirmationTokenGenerator;
@@ -10,9 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+@Service
 @Slf4j
 @RequiredArgsConstructor
-@Service
 public class AccountConfirmationExecutorImpl implements AccountConfirmationExecutor {
     private final AccountService accountService;
     private final AccountRequestMapper accountRequestMapper;
@@ -28,11 +29,15 @@ public class AccountConfirmationExecutorImpl implements AccountConfirmationExecu
 
     @Override
     public Account execute(Account account) {
-        String confirmToken = tokenGenerator.generate();
+        var confirmToken = tokenGenerator.generate();
         account.setConfirmationToken(confirmToken);
-
         accountService.save(account);
-        confirmationSender.sendConfirmationToken(confirmToken);
+
+        var confirmationTokenRequest = ConfirmationTokenRequest.builder()
+                .token(confirmToken)
+                .email(account.getEmail())
+                .build();
+        confirmationSender.sendConfirmationToken(confirmationTokenRequest);
         return account;
     }
 }
