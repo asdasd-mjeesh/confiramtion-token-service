@@ -1,6 +1,6 @@
 package com.confirmation_token.persistance.entity;
 
-import com.confirmation_token.model.ConfirmationToken;
+import com.confirmation_token.model.dto.request.outgoing.ConfirmationTokenDetailsRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,7 +30,9 @@ public class Account {
     private String contact;
 
     @Indexed(unique=true)
-    private ConfirmationToken confirmationToken;
+    private String confirmationToken;
 
     private LocalDateTime createdAt;
+
+    private LocalDateTime expiredAt;
 }

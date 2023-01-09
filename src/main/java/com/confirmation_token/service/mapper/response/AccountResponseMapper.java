@@ -1,7 +1,9 @@
-package com.confirmation_token.service.mapper;
+package com.confirmation_token.service.mapper.response;
 
 import com.confirmation_token.model.dto.response.AccountResponse;
+import com.confirmation_token.model.dto.response.ConfirmationTokenDetailsResponse;
 import com.confirmation_token.persistance.entity.Account;
+import com.confirmation_token.service.mapper.Mapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +15,14 @@ public class AccountResponseMapper implements Mapper<AccountResponse, Account> {
     @Override
     public AccountResponse map(Account from) {
         return AccountResponse.builder()
-                .confirmationToken(from.getConfirmationToken())
+                .confirmationTokenDetailsResponse(ConfirmationTokenDetailsResponse.builder()
+                        .token(from.getConfirmationToken())
+                        .createdAt(from.getCreatedAt())
+                        .expiredAt(from.getExpiredAt())
+                        .build())
                 .username(from.getUsername())
                 .contact(from.getContact())
                 .email(from.getEmail())
-                .createdAt(from.getCreatedAt())
                 .build();
     }
 

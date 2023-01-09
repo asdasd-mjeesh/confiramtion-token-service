@@ -1,4 +1,4 @@
-package com.confirmation_token.model;
+package com.confirmation_token.model.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ConfirmationToken {
+public class ConfirmationTokenDetailsResponse {
     private String token;
     private LocalDateTime createdAt;
     private LocalDateTime expiredAt;

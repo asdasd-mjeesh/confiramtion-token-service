@@ -1,14 +1,15 @@
-package com.confirmation_token.service.mapper;
+package com.confirmation_token.service.mapper.request.incoming;
 
 import com.confirmation_token.model.dto.request.incoming.AccountConfirmationRequest;
 import com.confirmation_token.persistance.entity.Account;
+import com.confirmation_token.service.mapper.Mapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class AccountRequestMapper implements Mapper<Account, AccountConfirmationRequest> {
+public class AccountIncomingRequestMapper implements Mapper<Account, AccountConfirmationRequest> {
 
     @Override
     public Account map(AccountConfirmationRequest from) {

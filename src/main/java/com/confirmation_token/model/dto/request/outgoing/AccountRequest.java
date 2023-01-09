@@ -1,6 +1,5 @@
 package com.confirmation_token.model.dto.request.outgoing;
 
-import com.confirmation_token.model.ConfirmationToken;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ConfirmationTokenRequest {
+public class AccountRequest {
     private String email;
-    private ConfirmationToken token;
+    private String username;
+    private ConfirmationTokenDetailsRequest confirmationTokenDetails;
 }

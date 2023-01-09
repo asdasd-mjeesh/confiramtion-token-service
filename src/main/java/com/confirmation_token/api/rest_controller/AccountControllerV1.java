@@ -1,7 +1,7 @@
 package com.confirmation_token.api.rest_controller;
 
 import com.confirmation_token.model.dto.response.AccountResponse;
-import com.confirmation_token.service.mapper.AccountResponseMapper;
+import com.confirmation_token.service.mapper.response.AccountResponseMapper;
 import com.confirmation_token.service.account.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ public class AccountControllerV1 {
     private final AccountService accountService;
     private final AccountResponseMapper accountResponseMapper;
 
-    @GetMapping(value = "/")
+    @GetMapping("/")
     public ResponseEntity<AccountResponse> getByConfirmationToken(@RequestParam(name = "token") String token) {
         var account = accountService.getByConfirmationToken(token);
         var accountResponse = accountResponseMapper.map(account);
