@@ -42,7 +42,7 @@ public class AccountConfirmationExecutorImpl implements AccountConfirmationExecu
         var confirmToken = tokenGenerator.generate();
         account.getConfirmationTokenDetails().setConfirmationToken(confirmToken.getToken());
         account.getConfirmationTokenDetails().setExpiredAt(confirmToken.getExpiredAt());
-//        accountService.save(account);
+        accountService.save(account);
 
         var accountMailConfirmationRequest = accountOutgoingRequestMapper.map(account);
         confirmationSender.sendConfirmationToken(accountMailConfirmationRequest);

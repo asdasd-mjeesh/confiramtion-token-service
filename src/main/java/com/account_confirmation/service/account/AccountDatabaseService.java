@@ -21,7 +21,9 @@ public class AccountDatabaseService implements AccountService {
 
     @Override
     public Account getByConfirmationToken(String token) {
+        System.out.println(accountRepository.findAll());
         Optional<Account> account = accountRepository.findByConfirmationTokenDetails_ConfirmationToken(token);
+        System.out.println(account);
         if (account.isPresent()) {
             return account.get();
         }

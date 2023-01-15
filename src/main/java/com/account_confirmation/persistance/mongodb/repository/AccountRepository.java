@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface AccountRepository extends MongoRepository<Account, Long> {
+public interface AccountRepository extends MongoRepository<Account, String> {
 
     Optional<Account> findByConfirmationTokenDetails_ConfirmationToken(String token);
 }
