@@ -36,8 +36,7 @@ public class AccountControllerV1 {
                             mediaType = MediaType.TEXT_PLAIN_VALUE
                     ))
             },
-            responses = {
-                    @ApiResponse(
+            responses = { @ApiResponse(
                             responseCode = "200",
                             content = @Content(
                                     schema = @Schema(implementation = AccountResponse.class),
