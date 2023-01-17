@@ -1,6 +1,6 @@
 package com.account_confirmation.configuration.kafka;
 
-import com.account_confirmation.model.dto.request.outgoing.AccountRequest;
+import com.account_confirmation.model.dto.kafka.producer.AccountConfirmation;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,27 +15,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class KafkaProducerConfig {
+public class KafkaConfirmationProducerConfig {
 
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServersUrl;
 
-    public Map<String, Object> producerConfig() {
+    public Map<String, Object> accountConfirmationProducerConfig() {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServersUrl);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        props.put(JsonSerializer.TYPE_MAPPINGS, "accountRequest:com.account_confirmation.model.dto.request.outgoing.AccountRequest");
+        props.put(JsonSerializer.TYPE_MAPPINGS, "accountConfirmation:com.account_confirmation.model.dto.kafka.producer.AccountConfirmation");
         return props;
     }
 
     @Bean
-    public ProducerFactory<String, AccountRequest> producerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfig());
+    public ProducerFactory<String, AccountConfirmation> accountConfirmationProducerFactory() {
+        return new DefaultKafkaProducerFactory<>(accountConfirmationProducerConfig());
     }
 
     @Bean
-    public KafkaTemplate<String, AccountRequest> kafkaTemplate(ProducerFactory<String, AccountRequest> producerFactory) {
+    public KafkaTemplate<String, AccountConfirmation> accountConfirmationKafkaTemplate(ProducerFactory<String, AccountConfirmation> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
     }
 }

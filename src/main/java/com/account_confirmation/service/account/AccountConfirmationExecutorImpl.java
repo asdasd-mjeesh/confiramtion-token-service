@@ -1,7 +1,7 @@
 package com.account_confirmation.service.account;
 
 import com.account_confirmation.exception.ModelValidationException;
-import com.account_confirmation.model.dto.request.incoming.AccountConfirmationRequest;
+import com.account_confirmation.model.dto.kafka.consumer.NewAccount;
 import com.account_confirmation.persistance.mongodb.entity.Account;
 import com.account_confirmation.service.confirmation_token.ConfirmationSender;
 import com.account_confirmation.service.confirmation_token.ConfirmationTokenGenerator;
@@ -24,15 +24,16 @@ public class AccountConfirmationExecutorImpl implements AccountConfirmationExecu
     private final ConfirmationTokenGenerator tokenGenerator;
     private final ApplicationModelValidator applicationModelValidator;
 
-    @KafkaListener(topics = "account_confirmation_token", groupId = "account_confirmation_group_id")
-    public void execute(AccountConfirmationRequest accountConfirmationRequest) {
-        String validationViolations = applicationModelValidator.validate(accountConfirmationRequest);
+    @KafkaListener(topics = "${kafka.topic.names.execution.new-account.confirmation}", groupId = "account_confirmation_group_id",
+            containerFactory = "newAccountConfirmationListenerContainerFactory")
+    public void execute(NewAccount newAccount) {
+        String validationViolations = applicationModelValidator.validate(newAccount);
         if (!validationViolations.isBlank()) {
             log.error(validationViolations);
             throw new ModelValidationException(validationViolations);
         }
 
-        Account account = accountIncomingRequestMapper.map(accountConfirmationRequest);
+        Account account = accountIncomingRequestMapper.map(newAccount);
         this.execute(account);
         log.info("Confirmation for account={} has been send", account);
     }

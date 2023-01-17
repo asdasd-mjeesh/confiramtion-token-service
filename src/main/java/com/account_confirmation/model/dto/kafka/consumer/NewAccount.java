@@ -1,4 +1,4 @@
-package com.account_confirmation.model.dto.request.incoming;
+package com.account_confirmation.model.dto.kafka.consumer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountConfirmationRequest {
+public class NewAccount {
     @Length(min = 8, max = 40)
     private String username;
 

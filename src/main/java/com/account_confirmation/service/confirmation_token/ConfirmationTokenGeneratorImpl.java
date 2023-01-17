@@ -1,6 +1,6 @@
 package com.account_confirmation.service.confirmation_token;
 
-import com.account_confirmation.model.dto.request.outgoing.ConfirmationTokenDetailsRequest;
+import com.account_confirmation.model.dto.kafka.producer.ConfirmationTokenDetails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +15,8 @@ public class ConfirmationTokenGeneratorImpl implements ConfirmationTokenGenerato
     private Integer confirmationTokenExpirationTime;
 
     @Override
-    public ConfirmationTokenDetailsRequest generate() {
-        return ConfirmationTokenDetailsRequest.builder()
+    public ConfirmationTokenDetails generate() {
+        return ConfirmationTokenDetails.builder()
                 .token(UUID.randomUUID().toString())
                 .createdAt(LocalDateTime.now())
                 .expiredAt(LocalDateTime.now().plus(confirmationTokenExpirationTime, ChronoUnit.MINUTES))

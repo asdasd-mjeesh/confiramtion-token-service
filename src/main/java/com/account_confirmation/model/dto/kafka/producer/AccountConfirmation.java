@@ -1,4 +1,4 @@
-package com.account_confirmation.model.dto.request.outgoing;
+package com.account_confirmation.model.dto.kafka.producer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountRequest {
+public class AccountConfirmation {
     private String email;
     private String username;
-    private ConfirmationTokenDetailsRequest confirmationTokenDetails;
+    private ConfirmationTokenDetails confirmationTokenDetails;
 }

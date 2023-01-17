@@ -1,4 +1,4 @@
-package com.account_confirmation.model.dto.request.outgoing;
+package com.account_confirmation.model.dto.kafka.producer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ConfirmationTokenDetailsRequest {
+public class ConfirmationTokenDetails {
     private String token;
     private LocalDateTime createdAt;
     private LocalDateTime expiredAt;
